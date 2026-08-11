@@ -1,0 +1,13 @@
+Workshop_ID,Date,Topic,Format,Registrations,Attendees,Satisfaction_Score,Plans_Completed,Venue_Cost_GBP,Materials_Cost_GBP,Advertising_Cost_GBP
+CP-101,2026-01-17,Plan Your First Project,In person,18,15,4.6,14,160,48,55
+CP-102,2026-02-07,Plan Your First Project,Online,22,16,4.2,13,0,22,70
+CP-103,2026-02-28,Plan Your First Project,In person,14,12,4.8,12,175,42,35
+CP-104,2026-03-21,Plan Your First Project,Online,19,14,4.1,11,0,18,60
+CP-105,2026-04-11,Plan Your First Project,In person,20,18,4.7,17,180,55,75
+CP-106,2026-05-02,Plan Your First Project,Online,16,11,,9,0,16,40
+CP-107,2026-05-23,Plan Your First Project,In person,12,10,4.5,9,150,36,30
+CP-108,2026-06-13,Plan Your First Project,Online,24,17,4.0,14,0,24,75
+CP-109,2026-07-04,Plan Your First Project,In person,17,15,4.9,15,170,50,45
+CP-110,2026-07-25,Plan Your First Project,Online,21,13,3.9,10,0,20,65
+CP-111,2026-08-15,Plan Your First Project,In person,15,13,4.6,12,165,44,40
+CP-112,2026-09-05,Plan Your First Project,Online,18,12,4.3,11,0,18,50
