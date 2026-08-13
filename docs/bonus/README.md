@@ -8,6 +8,6 @@
 
 [![Profession-Specific Prompts](professions/Hero.png)](professions/README.md)
 
-## [Local AI with Open Models]
+## [Local AI with Open Models](local-models/README.md)
 
 [![Local AI with Open Models](local-models/Hero.png)](local-models/README.md)
