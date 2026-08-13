@@ -1,6 +1,6 @@
 > **A free bonus online-only guide for *Claude Visual Bible* — not included in the print edition**
 
-![Beyond Your First AI](Bonus-Chapter-Beyond-Your-First-AI-hero.png)
+![Beyond Your First AI](Bonus-Chapter-Beyond-Your-First-AI-Hero.png)
 
 - [Introduction](#introduction)
 - [Chapter 1: Comparing Claude to ChatGPT](#chapter-1-comparing-claude-to-chatgpt)

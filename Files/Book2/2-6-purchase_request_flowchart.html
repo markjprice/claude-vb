@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Purchase Request Flowchart</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #fafafa;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .diagram-wrap {
+    background: #ffffff;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 32px;
+    max-width: 900px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .mermaid {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+</head>
+<body>
+  <h1>Purchase Request Process</h1>
+  <div class="diagram-wrap">
+    <pre class="mermaid">
+flowchart TD
+    A([Request Submitted]) --> B[Manager Reviews]
+    B --> C[Finance Checks Budget]
+    C -->|Budget Approved| D[Purchase Order Issued]
+    C -->|Budget Rejected| E[Requester Notified of Rejection]
+    E --> F[Request Revised or Closed]
+
+    classDef start fill:#e8f0fe,stroke:#4a7dd6,stroke-width:1.5px,color:#1a1a1a;
+    classDef step fill:#ffffff,stroke:#8a8a8a,stroke-width:1.5px,color:#1a1a1a;
+    classDef success fill:#e6f4ea,stroke:#3a8a4d,stroke-width:1.5px,color:#1a1a1a;
+    classDef fail fill:#fdecea,stroke:#c0392b,stroke-width:1.5px,color:#1a1a1a;
+
+    class A start;
+    class B,C step;
+    class D success;
+    class E,F fail;
+    </pre>
+  </div>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "base" });
+  </script>
+</body>
+</html>
