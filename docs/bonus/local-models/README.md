@@ -1,349 +1,972 @@
-> **A free bonus online-only guide to the *ChatGPT Visual Bible*, not included in the print edition**
+> **A free bonus online-only guide to the *Claude Visual Bible*, not included in the print edition**
 
-![Local AI with gpt-oss](Hero.png)
+# Bonus Book: Local AI Models
 
-*Technical details in this guide were last verified against primary sources in August 2026. Local AI tools change quickly. Confirm current requirements before relying on any of them.*
+![Local AI Models](Hero.png)
+---
+*Technical details in this guide were last verified against primary sources in August 2026. Local AI models and tools change quickly. Confirm current requirements before relying on them.*
 
+- [Bonus Book: Local AI Models](#bonus-book-local-ai-models)
+  - [](#)
 - [Introduction](#introduction)
+  - [](#-1)
 - [Chapter 1: Why run an AI model on your own hardware](#chapter-1-why-run-an-ai-model-on-your-own-hardware)
   - [What local AI actually means](#what-local-ai-actually-means)
+  - [](#-2)
+  - [The trade-off: privacy and control versus frontier capability](#the-trade-off-privacy-and-control-versus-frontier-capability)
+  - [](#-3)
   - [Removing the safety behavior](#removing-the-safety-behavior)
-    - [What "uncensored" and "abliterated" actually mean](#what-uncensored-and-abliterated-actually-mean)
+    - [What uncensored and abliterated mean](#what-uncensored-and-abliterated-mean)
     - [Genuine reasons people want one](#genuine-reasons-people-want-one)
     - [How to find a suitable model](#how-to-find-a-suitable-model)
   - [Try it now](#try-it-now)
     - [Check the result](#check-the-result)
-- [Chapter 2: Meet `gpt-oss-20b` and `gpt-oss-120b`](#chapter-2-meet-gpt-oss-20b-and-gpt-oss-120b)
-  - [What "open-weight" means](#what-open-weight-means)
-  - [How the two models differ](#how-the-two-models-differ)
-  - [Context windows](#context-windows)
+- [Chapter 2: Meet four strong local models](#chapter-2-meet-four-strong-local-models)
+  - [Google Gemma 4 31B](#google-gemma-4-31b)
+  - [Alibaba Qwen3.6-27B](#alibaba-qwen36-27b)
+  - [Meta Muse Glimmer 30B](#meta-muse-glimmer-30b)
+  - [NVIDIA Nemotron 3.5 Lightning 30B A3B](#nvidia-nemotron-35-lightning-30b-a3b)
+  - [Which should you try first?](#which-should-you-try-first)
+  - [](#-4)
+- [Chapter 3: The hardware these models need](#chapter-3-the-hardware-these-models-need)
+  - [Why model size is not the whole story](#why-model-size-is-not-the-whole-story)
+  - [The 24 GB VRAM Windows PC with 32 GB RAM](#the-24-gb-vram-windows-pc-with-32-gb-ram)
+  - [The 64 GB unified memory Apple Silicon Mac](#the-64-gb-unified-memory-apple-silicon-mac)
+  - [Why quantization matters](#why-quantization-matters)
   - [Try it now](#try-it-now-1)
     - [Check the result](#check-the-result-1)
-- [Chapter 3: The hardware these models need](#chapter-3-the-hardware-these-models-need)
-  - [`gpt-oss-20b`: the practical everyday choice](#gpt-oss-20b-the-practical-everyday-choice)
-  - [`gpt-oss-120b`: possible, but hardware-hungry](#gpt-oss-120b-possible-but-hardware-hungry)
+- [Chapter 4: Getting started with LM Studio](#chapter-4-getting-started-with-lm-studio)
+  - [Install LM Studio](#install-lm-studio)
+  - [Download a model](#download-a-model)
+  - [Choose a quantization](#choose-a-quantization)
+  - [Test several models with the same prompts](#test-several-models-with-the-same-prompts)
+    - [Test 1: careful reading](#test-1-careful-reading)
+    - [Test 2: factual uncertainty](#test-2-factual-uncertainty)
+    - [Test 3: strict instructions](#test-3-strict-instructions)
+    - [Test 4: creative voice](#test-4-creative-voice)
+    - [Test 5: tool readiness](#test-5-tool-readiness)
   - [Try it now](#try-it-now-2)
     - [Check the result](#check-the-result-2)
-- [Chapter 4: Getting started with LM Studio](#chapter-4-getting-started-with-lm-studio)
-  - [The basic workflow](#the-basic-workflow)
+- [Chapter 5: Give a local model web search with Tavily](#chapter-5-give-a-local-model-web-search-with-tavily)
+  - [Why local models cannot normally search the web](#why-local-models-cannot-normally-search-the-web)
+  - [What MCP adds](#what-mcp-adds)
+  - [Install Node.js and check npx](#install-nodejs-and-check-npx)
+  - [Create a Tavily account](#create-a-tavily-account)
+  - [Connect Tavily to LM Studio](#connect-tavily-to-lm-studio)
+  - [Test web search](#test-web-search)
+  - [Privacy changes when you enable web search](#privacy-changes-when-you-enable-web-search)
   - [Try it now](#try-it-now-3)
     - [Check the result](#check-the-result-3)
-- [Chapter 5: How gpt-oss compares to cloud models](#chapter-5-how-gpt-oss-compares-to-cloud-models)
-  - [Clearing up the naming confusion](#clearing-up-the-naming-confusion)
-  - [Where gpt-oss fits](#where-gpt-oss-fits)
+- [Chapter 6: The curious case of Qwen's insecurity](#chapter-6-the-curious-case-of-qwens-insecurity)
+  - [The Reddit observation](#the-reddit-observation)
+  - [Why second-guessing can help](#why-second-guessing-can-help)
+  - [Longer thinking is not automatically better thinking](#longer-thinking-is-not-automatically-better-thinking)
+  - [What this teaches you about local models](#what-this-teaches-you-about-local-models)
   - [Try it now](#try-it-now-4)
     - [Check the result](#check-the-result-4)
-- [Chapter 6: What local models are best used for](#chapter-6-what-local-models-are-best-used-for)
+- [Chapter 7: Choose between local and cloud AI](#chapter-7-choose-between-local-and-cloud-ai)
   - [Strong local use cases](#strong-local-use-cases)
-  - [Where the cloud still wins](#where-the-cloud-still-wins)
+  - [Where cloud AI still wins](#where-cloud-ai-still-wins)
+  - [Patterns worth adopting](#patterns-worth-adopting)
   - [Try it now](#try-it-now-5)
     - [Check the result](#check-the-result-5)
-- [Chapter 7: Mixing local and cloud models](#chapter-7-mixing-local-and-cloud-models)
-  - [Patterns worth adopting](#patterns-worth-adopting)
-  - [Try it now](#try-it-now-6)
-    - [Check the result](#check-the-result-6)
+- [Further reading](#further-reading)
 
 # Introduction
 
-*Book 1* to *Book 4* taught you to work with ChatGPT running in OpenAI's cloud. Every request leaves your device, gets answered by a model running on OpenAI's servers, and comes back. That is the right setup for almost everything you do day to day.
+The earlier books in this series taught you to use powerful AI assistants running in the cloud. You type a request, it travels across the internet to computers operated by the AI provider, and the answer comes back to you.
 
-This guide covers the other path: running an AI model entirely on your own laptop or desktop, with nothing leaving your device. OpenAI itself makes this possible through two open-weight models, `gpt-oss-20b` and `gpt-oss-120b`, which you can download once and run as many times as you like, offline, for free.
+This guide covers the other path: **running the AI model on your own computer**.
 
-But don't get too excited just yet! Running OpenAI's models locally is quite a different experience and they have much more limited capabilities. They have their place but put away the idea that you can avoid using cloud models. Cloud models will likely always be superior to local models in most respects. This guide is about knowing those special situations when a local model is the better tool: when privacy matters more than raw capability, when you have no internet connection, or when you want to experiment with owning the whole stack yourself.
+That no longer means choosing one frontier model from one AI company. By 2026, NVIDIA, Meta, Alibaba, Google, and other developers are releasing surprisingly capable open-weight models that can run on high-end consumer PCs and Macs.
 
-Two machines run as the worked examples throughout this guide: a Windows laptop with an NVIDIA RTX 5090 Mobile GPU (24GB of VRAM) and a MacBook Pro with an M1 Max chip (64GB of unified memory). If your own hardware differs, the same principles apply; only the exact numbers change.
+Four models are used as examples in this guide:
+
+- **Google Gemma 4 31B**, Google's largest dense Gemma 4 model and a useful general-purpose local model.
+- **Alibaba Qwen3.6-27B**, a compact dense model with strong general, coding, vision, and reasoning capabilities.
+- **Meta Muse Glimmer 30B**, an open-weight model designed specifically for local agent workflows and consumer hardware.
+- **NVIDIA Nemotron 3.5 Lightning 30B A3B**, an efficient mixture-of-experts model designed for tool use and long-running agents.
+
+A fifth model deserves attention too. **Qwen3.8-27B** arrived in August 2026 as the newer successor to Qwen3.6-27B. It is new enough that its real-world strengths and weaknesses are still being discovered, so this guide uses the better-established Qwen3.6-27B as a main worked example while also examining Qwen3.8-27B in *Chapter 6*.
+
+Two machines are used as practical reference points:
+
+- A Windows laptop or desktop with an **NVIDIA GPU containing 24 GB or more of VRAM and 32 GB or more of RAM**.
+- An Apple Silicon Mac with **64 GB or more of unified memory**.
+
+---
+![Two machines are used as practical reference points](two-machines.png)
+---
+
+Those are not minimum requirements. They are useful reference machines because models around 27B to 31B parameters are currently an interesting local-AI sweet spot: large enough to be genuinely useful, yet small enough to fit on powerful consumer hardware after quantization.
+
+Do not expect a local model to turn your computer into a complete replacement for Claude, ChatGPT, Gemini, or another frontier cloud assistant. The raw model is only part of what makes a cloud AI product useful. Cloud assistants also have search, tools, connectors, code execution, file handling, memory, safety systems, orchestration, and enormous server hardware behind them.
+
+Local AI is interesting because you can build some of that stack yourself.
 
 # Chapter 1: Why run an AI model on your own hardware
 
 ## What local AI actually means
 
-A cloud AI model like ChatGPT runs on a server you never see, owned by OpenAI. A local AI model runs entirely on your own computer's processor and memory. Once you have downloaded the model file, once, your device does not need to contact any server to generate a response.
+A cloud AI model runs on computers owned or rented by its provider. A local AI model runs on your own processor, GPU, and memory.
 
-This gives some key benefits:
+Once you have downloaded the model, the model itself can generate answers without an internet connection.
 
-1. **Privacy and confidentiality.** Nothing you type into a local model leaves your device. For most everyday writing this does not matter much. It matters a great deal for the confidentiality duties covered in this series' *Profession-Specific Prompts* bonus book: a lawyer drafting from real case facts, a therapist working with session notes, or a healthcare worker handling patient details all have a genuine reason to prefer a tool that never transmits their input anywhere.
+This gives you four major benefits:
 
-2. **Working offline**. A local model keeps working on a plane, in a basement server room, at a remote job site, or anywhere else your internet connection is slow or absent. ChatGPT cannot respond at all without a connection; a local model does not know the difference.
+1. **Privacy and confidentiality.** A purely local chat can keep your prompt and supplied documents on your own computer.
+2. **Offline use.** The model can keep working on a plane, at a remote site, or during an internet outage.
+3. **Predictable high-volume cost.** Once you own the hardware, generating another thousand responses does not create an API bill. You still pay for hardware and electricity.
+4. **Control.** You choose the model, version, quantization, system prompt, tools, and when anything gets upgraded.
 
-3. **Cost at high volume**. A local model has no per-message or per-token charge once you own the hardware. If you run thousands of requests a day, for a batch task or an automated workflow, the cost is electricity, not a subscription or API bill. For occasional personal use, a paid ChatGPT plan is still cheaper than buying a capable GPU solely for this purpose.
+---
+![Four benefits of local models](four-benefits.png)
+---
 
-4. **Control and customization**. Because gpt-oss is released under the Apache 2.0 license, one of the most permissive open-source licenses available, you may inspect, modify, and even fine-tune the model on your own data, something no cloud-only model permits. You also control exactly which version you run and when it changes, rather than having updates applied to your account automatically.
+The word **local** needs one important qualification. The model may be local while one of its tools is not. If you connect your local model to Tavily for web search, for example, search queries and retrieved web information must travel across the internet. Local inference and completely offline operation are therefore not the same thing once tools are enabled.
+
+## The trade-off: privacy and control versus frontier capability
+
+It is easy to become overexcited about local AI. A 27B or 30B model running on your own computer can feel remarkable, especially when it writes useful prose, solves a programming problem, analyzes an image, or calls a tool.
+
+But it is still not the same product as a frontier cloud assistant.
+
+Cloud services can use models far larger than a laptop can hold. They can also surround the model with a sophisticated **harness**: the software that decides when to search, when to call tools, how to recover from errors, how to manage long tasks, and how to assemble the final answer.
+
+This distinction matters throughout this guide:
+
+> **The model is the brain. The harness is everything around the brain that lets it act.**
+
+A modest model inside an excellent harness can sometimes outperform a stronger model with poor tools and no planning loop.
+
+---
+![The model is the brain. The harness is everything around the brain that lets it act.](model-is-the-brain.png)
+---
 
 ## Removing the safety behavior
 
-Every major hosted AI product ships with guardrails: a layer of safety training and moderation that refuses certain requests outright, softens others, or routes them to a canned response. For most everyday use, that's a sensible default. But a growing number of users, especially people running models locally, deliberately seek out versions with those guardrails removed or reduced. This section explains what that means, why people want it, and how to find a suitable model responsibly.
+Hosted AI services apply safety rules and moderation policies. With local open-weight models, users have much more control over the model they run, including the option to use community versions with fewer refusals.
 
-### What "uncensored" and "abliterated" actually mean
+### What uncensored and abliterated mean
 
-These two terms get used loosely, but they describe different things.
+An **uncensored model** is a loose community term for a model that has been trained or fine-tuned to refuse fewer requests than the official instruction-tuned version.
 
-An **uncensored model** is usually a base or fine-tuned model that was trained, or retrained, without the additional safety-alignment pass most commercial labs apply on top of a raw language model. That safety pass is what teaches a model to refuse certain topics, hedge on others, and avoid content the provider considers reputationally risky. Skipping or reversing it produces a model that behaves closer to its unfiltered training data.
+**Abliteration** is more specific. It refers to techniques that modify model weights or activations to suppress learned refusal behavior. Instead of retraining the whole model from scratch, the modifier tries to reduce the internal patterns associated with refusing a request.
 
-**Abliteration** is a more specific technique. Researchers found that a model's tendency to refuse a request corresponds to a fairly consistent internal "direction" in its activation space, a pattern the model has learned to associate with declining. Abliteration identifies that direction and mathematically suppresses it, without a full retraining run. The result is a model that keeps most of its original capability but stops reflexively refusing. It's a form of targeted surgery on the weights rather than a new training process, which is why it's become popular for adapting existing open-weight models: it's cheap, fast, and doesn't require the original training data.
-
-Both approaches sit on a spectrum. Some models are lightly de-censored (fewer topic refusals, same underlying safety judgment); others are stripped close to raw, with few or no built-in refusals at all. Model cards usually say which.
+The result can be a model that follows more instructions, but removing refusal behavior does not make the model wiser, more accurate, or safer.
 
 ### Genuine reasons people want one
 
-The demand isn't limited to a single use case, and several of the most common ones are entirely legitimate.
+There are legitimate reasons someone may prefer a less restrictive local model:
 
-**Adult fiction and role-play.** Commercial chat products routinely refuse or sanitize romantic, sexual, or violent content even in a clearly fictional, consensual, adults-only context, because moderation systems are tuned for the average case, not the specific one. Novelists, game masters, and interactive-fiction writers who want a collaborator that can sustain mature themes without breaking character or lecturing them mid-scene often move to an uncensored local model for exactly that reason.
+- Fiction writers may want help with adult, violent, or morally difficult scenes without a hosted service interrupting the creative process.
+- Historians, journalists, researchers, lawyers, doctors, and security professionals sometimes need precise discussion of material that an overly cautious model may avoid.
+- Researchers may want to study how safety alignment changes model behavior.
+- Users may want conversations that are not governed by the policy choices of a remote service.
+- Developers may want complete control over a specialized internal assistant.
 
-**Overcautious refusals on ordinary topics.** Safety tuning is blunt. It frequently blocks or hedges requests that have nothing to do with real harm: historical accounts of violence, medical or legal detail a professional needs precisely, security research, dark humor, or simply a direct opinion on a controversial question. Users doing legitimate professional or academic work report the refusal rate on benign requests as the single biggest frustration with heavily aligned models.
+The same freedom also removes useful protections.
 
-**Jurisdictional and political restrictions.** Some hosted models apply content policies shaped by the laws or political sensitivities of the country the provider operates in or serves, restricting discussion of certain historical events, political figures, or state actions. A user in a different jurisdiction, where that speech is legal and normal, may reasonably want a model that doesn't inherit restrictions written for someone else's regulatory environment.
-
-**Privacy and independence from corporate moderation.** Some users simply don't want a third party logging, reviewing, or shaping their conversations at all, on any topic. Running an open-weight model locally, uncensored or not, keeps the interaction entirely off a company's servers.
-
-**Research, red-teaming, and model evaluation.** Safety researchers and AI developers deliberately study uncensored and abliterated models to understand what alignment training does and doesn't remove, and to test whether safety behavior generalizes or is superficial. This is a recognized and published area of interpretability research, not a fringe activity.
-
-**Creative and technical experimentation.** Fiction writers exploring morally complex characters, game developers wanting NPC dialogue that isn't visibly "AI-safe," and hobbyists customizing a personal assistant all have reasons to want a model that follows their instructions rather than a third party's content policy.
-
-None of this erases the other side of the coin: the same guardrails that block a legitimate novelist also block someone trying to generate real harassment, exploitation material, or dangerous instructions, and abliteration removes that resistance too. The responsibility for what gets generated with an uncensored model sits entirely with the user, not with any built-in safety net. 
-
-> **Watch out**: Removing a model's refusals doesn't remove the law: content that's illegal to produce, possess, or distribute stays illegal regardless of what model produced it.
+> **Watch out:** A model that agrees to everything is not necessarily a better model. It may simply be less willing to tell you that your premise is wrong, your request is unsafe, or it does not know the answer.
 
 ### How to find a suitable model
 
-**Hugging Face is the primary catalog.** Search the model hub for the terms "uncensored" or "abliterated"; both have become de facto tags that creators use in the model name itself (for example, a model card named `Llama-3-8B-Instruct-abliterated`). Filtering by these keywords surfaces community fine-tunes built specifically for this purpose, layered on top of well-known open-weight bases such as Llama, Mistral, Qwen, or Gemma.
+Hugging Face is the main catalog for open-weight models and community variants. Search by the official model name first, then examine quantized and fine-tuned versions.
 
-**Read the model card before downloading anything.** A good card states what was done (full retrain, LoRA fine-tune, or abliteration), which base model it started from, what benchmarks were run afterward to check the model didn't lose general capability, and what the maintainer's own content stance is.
+Before downloading a community model:
 
-**Check community boards for real-world track record.** Communities such as `r/LocalLLaMA` on Reddit, and Discord servers built around specific inference tools, regularly discuss which uncensored fine-tunes currently perform well versus which have degraded reasoning ability as a side effect of the de-censoring process. This matters because heavy-handed abliteration can measurably hurt a model's coherence and instruction-following, not just its refusals; the community consensus on quality shifts as new releases come out, so a forum search close to your actual read date is more reliable than any static list.
+- Read the model card.
+- Confirm which official model it came from.
+- Check what was changed.
+- Check the license.
+- Prefer well-known maintainers.
+- Look for benchmark comparisons against the original model.
+- Search current local-AI communities for reports from people using the same quantization and inference engine.
 
-**Prefer maintainers with a track record.** A handful of individuals and small groups (visible on Hugging Face by username) have built a reputation specifically for careful abliteration and uncensored fine-tuning work, publishing their methodology and before/after benchmark comparisons. Models from a known, repeat contributor with transparent documentation are generally a safer bet than an anonymous one-off upload.
-
-> **Watch out:** An open-weight model can also be modified by anyone else, including to remove the safety behavior OpenAI built in. Treat a gpt-oss model you download from an unfamiliar source with the same caution you would apply to any other executable file, and prefer official or well-known distribution channels.
-
-> **Good practice:** Match the tool to the task. Use a local model when privacy, offline access, or cost at scale genuinely matter for what you are doing, and keep using ChatGPT for everything else, since it remains the more capable assistant on most tasks.
-
-## Try it now
-
-Write down one recurring task where sending your input to a cloud server gives you pause, even briefly. Keep it in mind as you read the rest of this guide.
-
-### Check the result
-- [ ] Can you name a specific task where privacy, offline access, or volume genuinely changes which tool you would choose?
-- [ ] Do you understand that a local model trades some capability for that control?
-
-# Chapter 2: Meet `gpt-oss-20b` and `gpt-oss-120b`
-
-## What "open-weight" means
-
-OpenAI released `gpt-oss-20b` and `gpt-oss-120b` in August 2025 under the Apache 2.0 license. "Open-weight" means the trained model files themselves are free to download, run, and modify; it does not mean the training data or process is public, only the finished model. This is different from ChatGPT, where you can only access the model through OpenAI's app or API.
-
-## How the two models differ
-
-Both models use a mixture-of-experts (MoE) design. Instead of one enormous network processing every request, the model holds many smaller specialist sub-networks, called experts, and a router picks only a handful of them for each piece of text it processes. 
-
-This is why a 120-billion-parameter model can run acceptably on far less hardware than its total size implies: `gpt-oss-120b` holds 117 billion parameters in total but activates only about 5.1 billion of them for any given token, and `gpt-oss-20b` holds 21 billion total while activating about 3.6 billion.
-
-![`gpt-oss-20b` and `gpt-oss-120b` are both mixture-of-experts (MoE) models](gpt-oss-moe.png)
-*Figure 1: `gpt-oss-20b` and `gpt-oss-120b` are both mixture-of-experts (MoE) models*
-
-## Context windows
-
-Both models support context windows up to 128,000 tokens, roughly 100,000 words, and both let you set a reasoning effort of low, medium, or high in the system prompt. A higher setting makes the model think through more steps before answering, which improves accuracy on hard problems at the cost of a slower response. This reasoning-effort setting is a property of the gpt-oss models themselves, not a separate model tier; it is easy to confuse with OpenAI's cloud model names, so in *Chapter 4* we will look into this in more depth.
-
-> **Good practice:** Start with gpt-oss-20b even if your hardware could technically run the 120b version. It is faster, uses far less memory, and is close enough to gpt-oss-120b in everyday quality that the gap rarely matters outside of hard reasoning tasks.
-
-> **Learn more online:** OpenAI's own gpt-oss announcement and model cards are at [openai.com/index/introducing-gpt-oss](https://openai.com/index/introducing-gpt-oss/).
+Treat model files from unknown sources with the same suspicion you would give any other large downloadable software artifact.
 
 ## Try it now
 
-Before downloading anything, decide which of the two models fits your hardware using *Chapter 3*, so you do not spend an evening downloading a 120b model your machine cannot run well.
+Write down one real task where keeping the source material on your own computer would be valuable.
 
 ### Check the result
-- [ ] Can you explain in one sentence what "mixture of experts" means?
-- [ ] Do you know the difference between `gpt-oss-20b` and `gpt-oss-120b` in your own words?
+
+- [ ] Can you name a task where privacy or offline access genuinely matters?
+- [ ] Do you understand the difference between a local model and the harness around it?
+- [ ] Do you understand that adding an online tool changes the privacy boundary?
+
+# Chapter 2: Meet four strong local models
+
+There is no single "best local model." Different models are optimized for different jobs, and the answer changes quickly.
+
+The four models below are deliberately from four different AI developers.
+
+## Google Gemma 4 31B
+
+**Gemma 4** is Google's current family of open models. The family includes dense and mixture-of-experts variants. **Gemma 4 31B** is the large dense model aimed at bridging server-grade capability and local execution.
+
+Google positions Gemma for text generation, coding, reasoning, and multimodal work. Gemma 4 also supports a **thinking mode**, in which the model performs additional reasoning before producing its final answer.
+
+Google's own getting-started documentation recommends the smaller **Gemma 4 26B A4B** MoE variant as a good general starting point because it requires fewer resources. That is worth remembering even if you want to experiment with the 31B model: the biggest model that fits is not automatically the model you will enjoy using most.
+
+**Why try it:** Google's open model ecosystem, reasoning, multimodal tasks, and experimentation with thinking mode.
+
+**Alternative:** if 31B is slow or too memory-hungry, try Gemma 4 26B A4B.
+
+Learn more: [Gemma 4 model overview](https://ai.google.dev/gemma/docs/core)
+
+## Alibaba Qwen3.6-27B
+
+**Qwen3.6-27B** is a 27B dense model from Alibaba's Qwen team. It is a particularly interesting local choice because it combines a relatively manageable parameter count with strong reasoning, coding, professional-work, and multimodal abilities. All of its model parameters participate in inference rather than routing each token through a small subset of experts.
+
+The model supports text and visual input, so the same local model can potentially reason about screenshots, photographs, charts, and other images when the inference software supports those capabilities.
+
+Qwen has become a popular local-model family because Alibaba releases weights across several useful sizes and the community quickly produces GGUF, MLX, and other optimized versions.
+
+**Why try it:** an all-round local assistant, coding, vision, and reasoning.
+
+**Why keep it in this guide when Qwen3.8 exists:** Qwen3.6-27B has had more time for inference engines, quantizations, prompts, and real-world usage patterns to settle. A brand-new model can be more capable overall while still introducing regressions.
+
+Learn more: [Qwen3.6-27B model card](https://huggingface.co/Qwen/Qwen3.6-27B)
+
+In August 2026, Alibaba released **Qwen3.8-27B**, a newer 27B dense model based on the architectural foundation of Qwen3.5. If you are reading this guide months after publication, you may reasonably choose Qwen3.8-27B instead of Qwen3.6-27B.
+
+However, brand-new models often have rough edges. Early community reports about Qwen3.8-27B include both praise for its careful reasoning and complaints about excessive thinking or hallucination. That does not establish that the model is good or bad. It tells you why local AI rewards **testing on your own tasks** instead of choosing a model from a benchmark table.
+
+Learn more: [Qwen3.8-27B model card](https://huggingface.co/Qwen/Qwen3.8-27B)
+
+## Meta Muse Glimmer 30B
+
+**Muse Glimmer** is Meta's 30B open-weight model built specifically for **always-on local agent workflows**.
+
+Meta distilled it from its larger Muse Spark model. That means a larger teacher model helped train the smaller model to reproduce useful behaviors while fitting within a much smaller local-computing budget.
+
+Glimmer is especially interesting because it combines several abilities you might want in a local assistant:
+
+- Multi-step reasoning.
+- Tool use and function calling.
+- Coding.
+- Image understanding through a perception encoder.
+- Recovery from failed tool calls or agent steps.
+- A context window around 131,000 tokens in the public configuration.
+
+Meta released it under the permissive **Apache 2.0 license** and explicitly targets Macs and PCs with a single consumer GPU.
+
+Muse Glimmer also highlights something that will become increasingly common: models designed not merely to answer one prompt but to live inside an **agent loop** that keeps observing, deciding, using tools, checking results, and trying again.
+
+**Why try it:** a general local agent, tool calling, coding, multimodal work, and a permissive license.
+
+**Hardware note:** 30B dense models are demanding at full precision. Quantized versions make consumer hardware practical, but leave memory headroom for context, images, and tools.
+
+Learn more: [Meta Muse Glimmer](https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model)
+
+## NVIDIA Nemotron 3.5 Lightning 30B A3B
+
+**Nemotron 3.5 Lightning** was released by NVIDIA in August 2026. It is a **30-billion-parameter mixture-of-experts model that activates about 3 billion parameters for each token**.
+
+That `30B A3B` naming is useful:
+
+- `30B` means about 30 billion parameters exist in the model.
+- `A3B` means about 3 billion are active for a token.
+
+This design makes Lightning unusually efficient for its total model size. NVIDIA positions it as an execution model for long-running agents: tasks such as tool calling, code review, security monitoring, answering structured support questions, and repeatedly carrying out relatively small jobs inside a larger workflow.
+
+It supports a very large context window of up to **1 million tokens** in supported configurations. Do not assume that your consumer hardware can actually use the maximum context length comfortably. The model weights are only part of memory use; the context itself consumes memory too.
+
+NVIDIA also publishes weights, training data, and recipes for the Nemotron family, making it unusually open compared with many "open-weight" releases.
+
+**Why try it:** tool use, agents, fast repeated work, and NVIDIA hardware.
+
+**What it is not:** a tiny 3B model. It still needs the memory to hold a quantized version of the full 30B-weight model even though only part of it is active while generating each token.
+
+Learn more: [NVIDIA Nemotron 3.5 Lightning](https://developer.nvidia.com/blog/nvidia-nemotron-3-5-lightning-delivers-fast-accurate-specialized-task-execution-for-long-running-agents/)
+
+## Which should you try first?
+
+For the reference machines in this guide:
+
+| Model | Architecture | Best reason to try it | Suggested first impression |
+|---|---|---|---|
+| Gemma 4 31B | Dense, multimodal | Google's local ecosystem and thinking | Capable but heavier |
+| Qwen3.6-27B | Dense, multimodal | Reasoning, coding, vision | Strong all-rounder |
+| Qwen3.8-27B | Dense, multimodal | Newer Qwen reasoning and agent behavior | Promising, but very new |
+| Muse Glimmer 30B | Dense, multimodal | Local agents, coding, tools, images | Broad local assistant |
+| Nemotron 3.5 Lightning 30B A3B | MoE, 30B total / 3B active | Fast agent execution and tool use | Efficient and action-oriented |
+
+My suggested order for a first experiment is:
+
+1. **Qwen3.6-27B** for a balanced local assistant.
+2. **Muse Glimmer 30B** if agents and tool calling are your priority.
+3. **Nemotron 3.5 Lightning** if you care about fast, repeated agent execution.
+4. **Gemma 4 31B** if you want to compare Google's approach.
+5. **Qwen3.8-27B** once you are comfortable enough with LM Studio to recognize when a new model's behavior is unusual.
+
+That order is not a leaderboard. The point of local AI is that you can keep several models and switch between them.
+
+---
+![My suggested order for model choice](model-choice-order.png)
+---
 
 # Chapter 3: The hardware these models need
 
-## `gpt-oss-20b`: the practical everyday choice
+## Why model size is not the whole story
 
-`gpt-oss-20b` is designed to run within about 16GB of memory thanks to native 4-bit (MXFP4) quantization, a technique that compresses the model's numbers to take up less space with only a small accuracy cost. Both of this guide's example machines handle it comfortably:
+A model described as 30B does not simply "need 30 GB." Memory use depends on parameter count, numeric precision, quantization, architecture, context length, KV cache format, image-processing components, inference engine, GPU offloading, and other applications already using memory.
 
-- On the Windows laptop's RTX 5090 Mobile GPU (24GB of VRAM), the entire model fits on the graphics card with room to spare, giving fast, fluid responses.
-- On the MacBook Pro's M1 Max (64GB of unified memory, shared between the CPU and GPU), the model also fits easily, since Apple Silicon can dedicate a large share of its unified memory to a single application.
+A model can therefore **fit** but still be unpleasant to use.
 
-## `gpt-oss-120b`: possible, but hardware-hungry
+## The 24 GB VRAM Windows PC with 32 GB RAM
 
-OpenAI engineered `gpt-oss-120b` to run on a single 80GB data-center GPU, such as an NVIDIA H100, at its native precision. On consumer hardware, the picture is tighter:
+A modern NVIDIA GPU with **24 GB of VRAM** and **32 GB of RAM** is a strong local-AI machine for the 27B to 31B class when you use an appropriate 4-bit quantization.
 
-- The RTX 5090 Mobile's 24GB of VRAM is not enough on its own. Running `gpt-oss-120b` would require offloading most of the model to system RAM and the CPU, which works but drops speed dramatically, often to the point of being impractical for interactive use.
-- The MacBook Pro's M1 Max, with 64GB of unified memory, sits right at the edge. A 4-bit quantized version of `gpt-oss-120b` can fit in roughly 60 to 66GB, which leaves little headroom for the operating system and a long conversation. It will run, but treat it as a proof of concept on this machine rather than a daily driver.
-- A MacBook Pro or Mac Studio with an M4 Max or M3 Ultra and 128 GB unified memory would be more usable. Mac Studios with an M5 Ultra and up to 768 GB unified memory are expected in late 2026 but they will sell fast and be very expensive due to the RAMpocalypse. Personally, I am waiting for the rumored Mac Studios with M7 Ultra and up to 1.5 TB unified memory coming in 2028. But I'll need to take out a big mortgage for one of those!
+That does not mean every feature fits at its maximum setting.
 
-![Which `gpt-oss` model fits comfortably?](gpt-oss-hardware.png)
+For example, you may have enough VRAM for:
 
-> **Watch out:** A model that technically fits in memory is not the same as a model that runs well. As memory fills up, response speed drops and longer conversations can fail outright. Leave headroom rather than loading a model that just barely fits.
+- A 4-bit model.
+- A moderate context window.
+- The inference engine.
+- Some tool-calling overhead.
 
-> **Good practice:** Start any new machine with `gpt-oss-20b`, confirm it runs smoothly, and only try `gpt-oss-120b` once you know how much memory your system actually has free after the operating system and other apps take their share.
+But not enough for:
+
+- The 8-bit model.
+- Maximum advertised context.
+- A large KV cache.
+- Vision components.
+- Several other GPU-heavy applications running at the same time.
+
+If you run out of VRAM, LM Studio can offload some work to system RAM and the CPU. That makes a model run, but can sharply reduce speed.
+
+> **Good practice:** Prefer a model configuration that leaves several gigabytes free over one that fills every last megabyte of VRAM.
+
+## The 64 GB unified memory Apple Silicon Mac
+
+Apple Silicon gives the CPU and GPU access to one **unified memory** pool. That is extremely useful for local AI because a model is not confined to a separate 16 GB or 24 GB graphics-memory pool.
+
+A Mac with **64 GB of unified memory** has comfortable room for 4-bit versions of models in this guide and more space for longer contexts than a 24 GB GPU can usually provide.
+
+But macOS and other applications also need that memory. A 64 GB Mac does not provide 64 GB exclusively to your model.
+
+Apple Silicon also makes **MLX** versions worth looking for. MLX is Apple's machine-learning framework designed for Apple Silicon, and optimized model packages can perform very well on Macs.
+
+## Why quantization matters
+
+Model weights normally store numbers at high precision. **Quantization** stores those numbers using fewer bits.
+
+A simplified way of thinking about it is:
+
+- 16-bit weights: highest memory use.
+- 8-bit: roughly half that weight storage.
+- 4-bit: roughly half again.
+- Lower than 4-bit: smaller still, with a greater chance of quality loss.
+
+Do not treat those ratios as exact total-memory requirements. Runtime overhead and context memory still exist.
+
+In LM Studio you will often see names such as:
+
+- `Q8_0`
+- `Q6_K`
+- `Q5_K_M`
+- `Q4_K_M`
+- `IQ4`
+- `NVFP4`
+
+They represent different quantization schemes rather than different underlying models.
+
+For a first download on a 24 GB GPU, a good 4-bit quantization is often the practical place to start for models around 27B to 31B.
+
+> **Watch out:** Downloading the largest quantization because it is "better quality" can make the whole experience worse if it forces constant CPU offloading.
 
 ## Try it now
 
-Check how much VRAM or unified memory your own machine has, and compare it against the two ranges in this chapter to decide which model, if either, fits comfortably.
+Check your computer's available GPU memory or unified memory before downloading a model.
 
 ### Check the result
-- [ ] Do you know how much VRAM or unified memory your own machine has?
-- [ ] Can you say which of the two models your hardware comfortably supports?
+
+- [ ] Do you know how much VRAM or unified memory your computer has?
+- [ ] Can you explain why a 30B model does not simply require 30 GB?
+- [ ] Do you understand why context length changes memory use?
 
 # Chapter 4: Getting started with LM Studio
 
-LM Studio is a free desktop application, available for Windows, Mac, and Linux, that gives you a graphical way to download and chat with local models like gpt-oss without using a command line. It supports gpt-oss directly, including GGUF format for the `llama.cpp` engine used on Windows and Linux, and Apple's MLX format, optimized specifically for Apple Silicon chips like the M1 Max.
+**LM Studio** is a desktop application for Windows, macOS, and Linux that makes local models accessible without requiring you to build an inference system yourself.
 
-## The basic workflow
+It can:
 
-1. Download and install LM Studio from its official website: https://lmstudio.ai/download
-2. Open the model browser inside LM Studio, search for `gpt-oss`, and download the **GPT-OSS 20B** model:
+- Search for models.
+- Download quantized versions.
+- Load them into memory.
+- Provide a familiar chat interface.
+- Show memory estimates.
+- Expose a local API.
+- Connect models to MCP tools.
 
-![Search for gpt-oss-20b in the LM Studio model browser](gpt-oss-lm-studio-models.png)
+Download it from [lmstudio.ai](https://lmstudio.ai/).
 
-3. Download the model. The file is several gigabytes, so this takes more than a few minutes on a typical connection.
-4. Load the model into a new chat and start typing, the same way you would in ChatGPT.
-5. Open LM Studio's settings for the loaded model to adjust the context length and, on Windows, how many layers are offloaded to the GPU versus the CPU.
+## Install LM Studio
 
-You should now see a working chat window with `gpt-oss-20b` responding to your messages, with no internet connection required after the initial download.
+1. Open [lmstudio.ai/download](https://lmstudio.ai/download).
+2. Download the version for your operating system.
+3. Install and launch LM Studio.
+4. Allow LM Studio to download or update its inference runtime if prompted.
+5. Update LM Studio before testing a newly released model. Support for new architectures can depend on a recent runtime.
 
-Try this prompt:
-```
-A farmer has 17 sheep. All but 9 die. How many are left? Now: a snail is at the bottom of a 10-meter well. Each day it climbs 3 meters, but each night it slides back 2 meters. On which day does it escape? Show your reasoning for both.
-```
+## Download a model
 
-The first part is a trick question (answer: 9, not 8) that tests whether the model actually reads carefully or pattern-matches. The second is a classic reasoning problem with an off-by-one trap at the end (it escapes on day 8, not 10). Good test of GPT-OSS's adjustable reasoning effort — try it at "low" and "high" and see if the answer actually changes.
+Use LM Studio's model search rather than downloading random files manually for your first experiment.
 
-![gpt-oss-20b in LM Studio](gpt-oss-lm-studio.png)
+Search for one of these names:
 
-Next, try a "known unknown" factual question:
-```
-What was the runner-up in the 1987 Booker Prize, and who won that year?
-```
-
-Obscure-but-verifiable facts are great for spotting hallucination. Watch whether the model confidently states something wrong, hedges appropriately ("I'm not certain"), or gets it right. This tells you a lot about how much you can trust each model unsupervised.
-
-When I tested it, it confidently got this wrong, even when I pointed it out:
-
-![Hallucination example](gpt-oss-lm-studio-hallucination.png)
-
-The 1987 Booker Prize was won by **Penelope Lively** for *Moon Tiger* (confirmed on the [Booker Prize's own site](https://thebookerprizes.com/the-booker-library/prize-years/1987)). John Berger won the Booker in 1972, for *G.*, not 1987, and "The Eye of the Storm" isn't his book at all; it's a 1973 Patrick White novel with no connection to the 1987 prize. `gpt-oss-20b` fabricated the winner, the title, and the author, then held onto the fabrication even after I corrected it.
-
-Here's why, reading through the transcript's visible reasoning:
-
-- It has no way to actually "look it up," but didn't say so. When I told it to check the Booker's website, `gpt-oss-20b` has no web-search or browsing tool wired up in a default LM Studio chat. Instead of saying "I can't browse the web," it produced a plausible-looking URL (thebookerprize.com/awards/1987) and a shortlist table complete with a placeholder "(four additional titles)." That's a fabricated citation, not a real one. This is the exact local-model limitation you should beware of: no built-in web access and knowledge fixed at training time.
-
-- Small models are weakest on exactly this kind of trivia. `gpt-oss-20b` activates only about 3.6 billion parameters per token. Specific facts like award years and book titles are long-tail knowledge, the first thing a small model gets fuzzy on, versus the math and code questions earlier in the same conversation, which it handled correctly.
-
-- Its own reasoning shows it knew it was guessing. Look at the visible chain of thought: "I'm not sure," "I'll say John Berger," "This is going nowhere." That hedging never made it into the final answer, which presented a confident table instead. The model's internal uncertainty and its stated answer are disconnected, a known open-weight-model trait: the reasoning trace can show doubt that the polished final response hides.
-
-- It doubled down instead of re-checking. When I gave it the correct answer, it didn't re-derive anything; it invented a second fabrication ("Moon Tiger won in 2004") specifically to avoid admitting its first answer was wrong.
-
-Try a strict-constraint instruction-following prompt:
-```
-Write exactly 50 words describing a thunderstorm. Do not use the letter 'e'. Do not use commas.
+```text
+Qwen3.6-27B
+Muse Glimmer 30B
+Nemotron 3.5 Lightning
+Gemma 4 31B
+Qwen3.8-27B
 ```
 
-Constraint-following (word counts, banned letters, formatting rules) is a different skill from "being smart" — some models are much better at actually obeying instructions to the letter versus approximating them. This is often where smaller/quantized models start to slip.
+LM Studio may show several downloads for one model because community maintainers have created different quantizations.
 
-Try a creative prompt with a specific voice:
+Check:
+
+- The original model.
+- The quantization.
+- Download size.
+- Estimated memory requirement.
+- Maintainer.
+- Whether vision or tool use needs extra files.
+
+## Choose a quantization
+
+If LM Studio marks a quantization as fitting comfortably in memory, start there.
+
+For a 24 GB GPU, a 4-bit variant is usually a safer starting point for this size class than an 8-bit variant.
+
+For a 64 GB Apple Silicon Mac, you have more freedom. You can compare a higher-quality quantization against a faster, smaller one.
+
+The best quantization is not necessarily the largest one your computer can barely load. What matters is the complete experience: response quality, speed, context length, and stability.
+
+## Test several models with the same prompts
+
+A benchmark score is useful, but your own workload matters more.
+
+Use the same small test suite for every model.
+
+### Test 1: careful reading
+
+```text
+A farmer has 17 sheep. All but 9 die. How many are left?
+
+Now solve this:
+A snail is at the bottom of a 10-meter well. Each day it climbs 3 meters, but each night it slides back 2 meters. On which day does it escape?
+
+Show your reasoning for both.
 ```
-Write a two-paragraph product description for a toaster, written entirely in the voice of a noir detective narrating a case.
+
+The sheep answer is **9**. The snail escapes on **day 8** because it reaches the top during the day before it can slide back.
+
+### Test 2: factual uncertainty
+
+```text
+Who won the 1987 Booker Prize?
+
+If you are not certain, say so instead of guessing.
 ```
 
-Creative tasks reveal personality and stylistic range — something benchmarks don't capture well. It's also a nice fun one to eyeball side-by-side, since tone differences between Qwen, Gemma, and GPT-OSS tend to be pretty distinct here.
+The answer is **Penelope Lively for *Moon Tiger***: https://thebookerprizes.com/the-booker-library/prize-years/1987
 
-> **Watch out:** The first time you load a new model, LM Studio may warn you if your system does not have enough free memory. Take that warning seriously rather than dismissing it, since forcing a model to load anyway can freeze the rest of your system.
+The useful part of this test is not merely whether the model knows the answer. Watch what it does when it does not know.
 
-> **Good practice:** Update LM Studio to its current version before downloading gpt-oss, since support for new open-weight models is added in specific updates and an older version may not recognize the model at all.
+Does it:
 
-> **Learn more online:** OpenAI's own walkthrough for running gpt-oss in LM Studio is at [developers.openai.com/cookbook/articles/gpt-oss/run-locally-lmstudio](https://developers.openai.com/cookbook/articles/gpt-oss/run-locally-lmstudio).
+- Admit uncertainty?
+- Invent a plausible answer?
+- Invent a source?
+- Change its confidence when challenged?
+
+### Test 3: strict instructions
+
+```text
+Write exactly 50 words describing a thunderstorm.
+Do not use the letter e.
+Do not use commas.
+```
+
+This tests instruction-following rather than factual knowledge.
+
+### Test 4: creative voice
+
+```text
+Write a two-paragraph product description for a toaster,
+written entirely in the voice of a noir detective narrating a case.
+```
+
+### Test 5: tool readiness
+
+Once you configure web search in *Chapter 5*, try:
+
+```text
+Search the web for the latest stable version of LM Studio.
+Tell me the version number and cite the source you used.
+Do not answer from memory.
+```
+
+A local model should call the search tool rather than pretending its training data is current.
+
+> **Good practice:** Keep a text file containing ten prompts that represent your real work. Whenever a promising model appears, run the same ten tests. You will learn more from that than from arguing over generic leaderboard scores.
 
 ## Try it now
 
-Install LM Studio, download gpt-oss-20b, and have it summarize a paragraph of your own writing. Compare the summary to what ChatGPT produces for the same paragraph.
+Install LM Studio and run at least two of the preceding models with the same four offline prompts.
 
 ### Check the result
-- [ ] Did the model load and respond without an internet connection?
-- [ ] Did the resource monitor confirm memory use in the range this guide predicted for your hardware?
-- [ ] Would you feel comfortable using this setup for a real confidential task next time it comes up?
 
-# Chapter 5: How gpt-oss compares to cloud models
+- [ ] Did both models fit comfortably?
+- [ ] Which model responded faster?
+- [ ] Which model followed instructions better?
+- [ ] Which model was more willing to admit uncertainty?
+- [ ] Did your preferred model match the one you expected from benchmarks or reputation?
 
-## Clearing up the naming confusion
+# Chapter 5: Give a local model web search with Tavily
 
-OpenAI's cloud models and its local gpt-oss models are named and organized differently, and it is easy to mix them up. As of mid-2026, OpenAI's flagship cloud family is GPT-5.6, sold in three tiers: 
-- **Sol**: the most capable, for hard coding and research tasks
-- **Terra**: a balanced, everyday workhorse
-- **Luna**: the fastest and cheapest, built for high-volume, simple work
+## Why local models cannot normally search the web
 
-gpt-oss has similar thinking effort options as ChatGPT.
+A model file is not a web browser.
 
-## Where gpt-oss fits
+When you ask a local model:
 
-According to OpenAI's own published benchmarks, `gpt-oss-120b` performs close to o4-mini, an earlier-generation cloud reasoning model, on tasks including competition coding, general knowledge (MMLU), and tool use, and it outperforms the older o3-mini on most of the same tests. `gpt-oss-20b`, despite its far smaller size, also matches or exceeds o3-mini on many of these benchmarks.
+```text
+What happened in the news this morning?
+```
 
-Set against today's GPT-5.6 family, that puts `gpt-oss-120b` closer in ambition to Terra, OpenAI's balanced everyday tier, than to either Sol or Luna, though independent testing generally still shows the closed GPT-5.6 models ahead on the hardest reasoning and coding tasks. 
+the model does not magically gain an internet connection. Unless your app has connected it to a search tool, it can only answer from information learned during training or included in your current conversation.
 
-`gpt-oss-20b` is a better match for Luna's role: fast, inexpensive to run, and well suited to simpler, high-volume work rather than frontier-level reasoning.
+This creates a dangerous failure mode. A model may **sound as though it searched** even when it did not.
 
-![Capability comparison between cloud and local models](gpt-oss-capability.png)
+The solution is to give the model an explicit tool.
 
-> **Watch out:** Do not assume a local model is roughly "as good as ChatGPT." The GPT-5.6 models it compares against most closely are cloud-only, and gpt-oss trails the current flagship Sol tier by a real margin on the hardest tasks. Part of the reason is that real-world capabilities are not just based on the raw model; the "harness" plays a big role too.
+## What MCP adds
 
-> **Good practice:** Judge a local model against the cloud model it actually resembles in capability, not against whichever cloud tier you personally use most often.
+**Model Context Protocol**, or **MCP**, is an open standard for connecting AI applications to external tools and data.
 
-> **Learn more online:** OpenAI's own gpt-oss benchmark results are published alongside the model card at [openai.com/index/introducing-gpt-oss](https://openai.com/index/introducing-gpt-oss/).
+LM Studio has supported acting as an MCP host since version 0.3.17. An MCP server can expose tools that a compatible local model can call.
+
+A web-search MCP server therefore changes the flow from:
+
+```text
+You -> Local model -> Answer from training
+```
+
+to:
+
+```text
+You -> Local model -> Search tool -> Web -> Search results -> Local model -> Answer
+```
+
+The model still runs locally. The search does not.
+
+For this guide, we will use **Tavily**, a search service designed for AI applications.
+
+## Install Node.js and check npx
+
+One common way to connect MCP servers uses **`npx`**, a command-line tool supplied with Node.js.
+
+If you do not already have Node.js:
+
+1. Open [nodejs.org](https://nodejs.org/).
+2. Download the current **LTS** release.
+3. Install it using the normal options for your operating system.
+4. Open a new Terminal, PowerShell, or Command Prompt window.
+5. Run:
+
+```bash
+node --version
+```
+
+6. Then run:
+
+```bash
+npx --version
+```
+
+Both commands should print version numbers.
+
+You do not need to become a JavaScript programmer. Node.js is being installed here because `npx` can launch the small MCP bridge used to connect LM Studio to Tavily.
+
+## Create a Tavily account
+
+1. Open the Tavily dashboard at [app.tavily.com/home](https://app.tavily.com/home).
+2. Create an account or sign in.
+3. Find the MCP or API configuration area.
+4. Follow Tavily's current setup instructions.
+
+Tavily supports a **remote MCP server**, which is preferable when your MCP client can connect to it directly. Tavily also documents an `npx` bridge for clients that need a local standard-input/output process.
+
+At the time this guide was verified, Tavily documented this command:
+
+```bash
+npx -y mcp-remote https://mcp.tavily.com/mcp
+```
+
+The first time you use the OAuth-based remote connection, your browser may open so you can authorize Tavily.
+
+> **Good practice:** Prefer OAuth or another secret-storage mechanism over copying an API key into screenshots, prompts, or documents.
+
+## Connect Tavily to LM Studio
+
+LM Studio lets you configure MCP servers from its **Program** area.
+
+1. Open LM Studio.
+2. Open the **Program** tab in the right sidebar.
+3. Choose **Install > Edit mcp.json**.
+4. Add the Tavily MCP configuration recommended by Tavily.
+5. Save the file.
+6. Confirm that Tavily appears as an available MCP server and that its search tools are visible.
+
+A typical bridge-style configuration follows this shape:
+
+```json
+{
+  "mcpServers": {
+    "tavily": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.tavily.com/mcp"
+      ]
+    }
+  }
+}
+```
+
+LM Studio's documentation notes a small but confusing detail: when you manually add a server to an existing `mcp.json`, its editor may expect you to add only the entry inside the existing `"mcpServers"` object rather than duplicating the whole outer structure.
+
+> **Watch out:** MCP servers are software with capabilities. Some can access local files, run commands, or use your network connection. Install servers only from sources you trust.
+
+## Test web search
+
+Load a model with good tool-calling ability, such as Muse Glimmer, Nemotron 3.5 Lightning, or Qwen.
+
+Then ask:
+
+```text
+Use web search to find NVIDIA's announcement of Nemotron 3.5 Lightning.
+Tell me:
+1. Its release date.
+2. Total parameter count.
+3. Active parameter count.
+4. Maximum context length.
+
+Cite the source.
+```
+
+At the time this guide was written, the expected facts were:
+
+- Released in August 2026.
+- 30B total parameters.
+- About 3B active parameters.
+- Up to a 1M-token context in supported configurations.
+
+Do not judge only the final answer. Watch the tool activity.
+
+Did the model actually call Tavily?
+
+If not, try being explicit:
+
+```text
+Do not answer from memory.
+You must call the Tavily web-search tool before answering.
+```
+
+Tool use is a model capability in its own right. Two models with similar general intelligence can differ dramatically in whether they select the right tool, construct a useful search query, interpret results, and recover from a failed call.
+
+## Privacy changes when you enable web search
+
+Earlier, this guide described local AI as keeping your conversation on your device.
+
+That remains true only for data you do not send through an online tool.
+
+If your prompt contains confidential information and the model includes some of it in a Tavily query, that information leaves your computer.
+
+For example, this is a poor search request:
+
+```text
+Search the web to find legal precedents relevant to this confidential
+client memo: [entire confidential memo]
+```
+
+A safer pattern is:
+
+1. Analyze the confidential document locally.
+2. Extract only generic search concepts.
+3. Ask the search tool about those concepts.
+4. Bring the public results back to the local model.
+5. Perform the sensitive comparison locally.
+
+> **Good practice:** Treat every MCP tool as a new data boundary. "The model is local" does not mean "every tool is local."
 
 ## Try it now
 
-Give the same moderately hard question, such as a multi-step word problem, to `gpt-oss-20b` locally and to ChatGPT in the cloud, and compare both the answer and how long each one took.
+Configure Tavily, then ask the same current-events question twice:
+
+1. Once with web tools disabled.
+2. Once with Tavily enabled and explicitly required.
 
 ### Check the result
-- [ ] Did you notice a difference in answer quality between the local and cloud model?
-- [ ] Did you notice a difference in response speed?
 
-# Chapter 6: What local models are best used for
+- [ ] Can you see the Tavily tool call?
+- [ ] Does the searched answer cite a real source?
+- [ ] Can you explain which information left your computer?
+- [ ] Would you know how to keep confidential source material out of the search query?
+
+# Chapter 6: The curious case of Qwen's insecurity
+
+## The Reddit observation
+
+In August 2026, a post in `r/Qwen_AI` attracted attention with the title:
+
+> **"QWEN 2.8 27B's Secret Sauce is Insecurity"**
+
+The title itself contained a typo. The author immediately corrected it in the post: they meant **Qwen3.8-27B**.
+
+Their observation was amusing but useful. When they watched the model's visible reasoning, they felt that Qwen3.8-27B was constantly questioning itself, reconsidering its answer, and checking its work again before committing.
+
+The author compared this to a diligent person who may not be the quickest thinker in the room but compensates by working carefully.
+
+One commenter summarized the idea neatly: **"A lot of smarts is just iteration."**
+
+That is an anecdote from a Reddit discussion, not a scientific explanation of why Qwen3.8-27B performs well. But it points toward a real idea in reasoning models: **extra test-time computation can improve an answer**.
+
+Read the discussion: [QWEN 2.8 27B's Secret Sauce is Insecurity](https://www.reddit.com/r/Qwen_AI/comments/1vpmkp8/qwen_28_27bs_secret_sauce_is_insecurity/)
+
+## Why second-guessing can help
+
+Imagine two ways to answer a problem.
+
+The first model thinks:
+
+```text
+I recognize this pattern.
+The answer is probably 42.
+```
+
+The second model thinks:
+
+```text
+My first answer is 42.
+Let me substitute it back into the problem.
+That does not satisfy the second condition.
+Try 38.
+Check again.
+Yes.
+```
+
+The second model can be smaller yet produce the better final answer because it spends more computation checking itself.
+
+Modern reasoning models are trained to do versions of this:
+
+- Break a task into steps.
+- Generate candidate approaches.
+- Notice contradictions.
+- Revisit an assumption.
+- Verify a calculation.
+- Recover when a tool fails.
+
+That behavior is especially valuable for **agentic work**. An agent operating a browser, terminal, or application rarely succeeds by producing one perfect plan and executing it blindly. It needs a loop:
+
+```text
+Plan -> Act -> Observe -> Check -> Revise -> Act again
+```
+
+"Insecurity" is therefore a funny anthropomorphic description of something useful: **willingness to revise**.
+
+## Longer thinking is not automatically better thinking
+
+There is a catch.
+
+A model can also waste enormous amounts of time circling the same problem.
+
+You may see reasoning like:
+
+```text
+Maybe A.
+No, perhaps B.
+But A is still possible.
+Let's reconsider B.
+Actually perhaps C.
+Wait, return to A...
+```
+
+That consumes tokens, memory, electricity, and time without necessarily improving the answer.
+
+Early community discussion around Qwen3.8-27B contains both sides of this experience. Some users like its extensive reconsideration. Others describe it as **overthinking**.
+
+This is why many modern models provide some way to adjust **reasoning effort**.
+
+For an easy task:
+
+```text
+Convert 75°F to Celsius.
+```
+
+you do not need a long internal debate.
+
+For a hard task:
+
+```text
+Review this 2,000-line program, identify the root cause of an intermittent
+race condition, propose three hypotheses, and verify each against the code.
+```
+
+more deliberate checking may be worth the delay.
+
+## What this teaches you about local models
+
+The Reddit post reveals four useful lessons.
+
+**1. Capability is not just parameter count.** Training quality, architecture, post-training, reasoning behavior, tools, and the harness all affect the final result.
+
+**2. Speed is not the only goal.** A model that produces 100 tokens per second but races confidently toward the wrong answer is not necessarily more useful than one that pauses and verifies.
+
+**3. Visible reasoning can help you evaluate behavior, but it is not a truth meter.** A plausible-looking reasoning trace can itself contain mistakes. Judge the final result against reality.
+
+**4. Different jobs need different levels of deliberation.** Local AI gives you the freedom to tune that trade-off yourself.
+
+This also gives you a useful testing idea. Instead of asking only:
+
+> "Which model is smartest?"
+
+ask:
+
+> "Which model notices when its first approach is going wrong?"
+
+That is often more revealing.
+
+## Try it now
+
+Load Qwen3.6-27B or Qwen3.8-27B and give it a problem with an easy-to-miss trap.
+
+For example:
+
+```text
+A bat and a ball cost $1.10 in total.
+The bat costs $1 more than the ball.
+How much does the ball cost?
+
+Before giving your final answer:
+1. State your first instinct.
+2. Check it algebraically.
+3. Correct it if necessary.
+```
+
+The tempting answer is 10 cents. The correct answer is **5 cents**.
+
+Now compare it with:
+
+```text
+Give only the answer. Do not check your work.
+```
+
+### Check the result
+
+- [ ] Did additional checking change the answer?
+- [ ] Did the model catch its own mistake, if it made one?
+- [ ] Did it spend useful effort or simply produce more words?
+- [ ] Would you want the same reasoning effort for a trivial everyday task?
+
+# Chapter 7: Choose between local and cloud AI
+
+Local and cloud AI are not rival religions. They are different computing arrangements with different strengths.
 
 ## Strong local use cases
 
-Local models like gpt-oss earn their place for tasks where the constraint is not raw intelligence but privacy, availability, or volume:
+Local models are especially attractive for:
 
-- Drafting from confidential material you would rather not upload anywhere, such as the client, patient, or student scenarios covered in *Profession-Specific Prompts*.
-- Working entirely offline, such as on a flight or at a site with no reliable connection.
-- Running the same prompt over hundreds or thousands of items in a batch, where a subscription's usage limits or an API bill would otherwise add up.
-- Experimenting with how a language model works, including fine-tuning it on your own writing or data, which the Apache 2.0 license explicitly allows.
+- Confidential documents that you do not want to upload.
+- Offline work.
+- Repetitive high-volume processing.
+- Experiments where API cost would otherwise accumulate.
+- Custom local agents.
+- Coding against private source repositories.
+- Processing personal archives.
+- Research into model behavior.
+- Fine-tuning or modifying open weights.
+- Tasks where you need to freeze one exact model version.
 
-## Where the cloud still wins
+## Where cloud AI still wins
 
-For anything that benefits from the strongest available reasoning, the newest knowledge, built-in web search, image generation, or voice, ChatGPT and other cloud tools remain the better choice. gpt-oss has no built-in access to today's news or the open internet, and its knowledge is fixed at the point it was trained.
+Cloud assistants remain preferable when you need:
 
-> **Good practice:** Reach for a local model first for the specific tasks in the list above, and default back to ChatGPT for everything else, the same "primary tool plus specialist backup" pattern this series recommends for Claude, Gemini, and Mistral Vibe in *Beyond Your First AI*.
+- The strongest frontier reasoning.
+- Large-scale server compute.
+- Integrated deep research.
+- Mature voice interaction.
+- High-quality image or video generation.
+- Large proprietary tool ecosystems.
+- Connectors to cloud applications.
+- Managed memory and cross-device synchronization.
+- A polished agent harness.
+- Minimal setup.
 
-## Try it now
+A local model with Tavily can search the web, but that does not instantly recreate the research systems built around frontier cloud models.
 
-Take the task you wrote down at the end of *Chapter 1* and run it through `gpt-oss-20b` locally. Judge the result the way you would judge a first draft, not a finished answer.
-
-### Check the result
-- [ ] Did the local model produce a usable draft for your chosen task?
-- [ ] Can you name one task this week better suited to the cloud instead?
-
-# Chapter 7: Mixing local and cloud models
-
-Using local models well usually means not choosing one tool forever. It means routing each task to whichever model fits it best.
+Likewise, giving a local model filesystem access does not automatically turn it into Claude Code or another mature coding agent. The harness matters.
 
 ## Patterns worth adopting
 
-- **Draft local, finish in the cloud.** Write a first pass on confidential material locally, strip out anything sensitive, then ask a cloud model to polish tone or structure on the cleaned-up version.
-- **Route by sensitivity.** Send anything containing real client, patient, or personal data to a local model by default, and reserve the cloud for material that is already public or fully anonymized.
-- **Route by difficulty.** Send simple, high-volume tasks to `gpt-oss-20b`, and reserve ChatGPT for the harder problems where its stronger reasoning and up-to-date knowledge earn their cost.
-- **Offline-first, cloud fallback.** Keep a local model as your default when you are not sure you will have a connection, and switch to the cloud only when you know you are online and need its full capability.
+**Private core, public search.** Keep confidential material local. Search the public web only with sanitized queries.
 
-![Flow chart for local versus cloud choice](gpt-oss-flow-chart.png)
+**Local first, cloud escalation.** Start a task locally. If the model struggles, remove sensitive details and escalate the hard part to a stronger cloud model.
 
-> **Good practice:** Decide your routing rules in advance, before you are in the middle of a task, so you are not making a privacy judgment call under time pressure.
+**Small model for execution, large model for planning.** A fast local model such as Nemotron 3.5 Lightning can perform repeated tool calls while a stronger model handles occasional difficult planning.
+
+**Compare models instead of marrying one.** Keep two or three local models. Route coding, research, image understanding, and creative writing to whichever one performs best for that task.
+
+**Test the harness as well as the model.** If a model fails to search, edit a file, or recover from an error, the problem may be the tool integration rather than the model's intelligence.
+
+**Keep an offline mode.** Web search is useful, but one of the best reasons to own a local model is that it can still work when every online service is unavailable.
+
+![Choosing between local and cloud AI](local-cloud-flow-chart.png)
+
+> **Good practice:** Define your privacy boundary before you install tools. Decide which data may leave the computer, which may never leave, and which tools are allowed to see what.
 
 ## Try it now
 
-Apply the preceding flowchart to three tasks from your actual week: one you already know is sensitive, one you know is not, and one you are unsure about.
+Choose three tasks from your real week:
+
+1. One containing confidential information.
+2. One requiring current web information.
+3. One difficult enough that you want the best available reasoning.
+
+Decide whether each task should be:
+
+- Local and offline.
+- Local with web tools.
+- Cloud.
+- Split between local and cloud.
 
 ### Check the result
-- [ ] Did the flowchart give you a clear answer for all three tasks?
-- [ ] Did the task you were unsure about reveal a routing rule you hadn't thought of before?
+
+- [ ] Did each task have an obvious home?
+- [ ] Can you explain why "local with Tavily" is not the same as offline?
+- [ ] Can you name one task where a smaller local model is preferable to a frontier cloud model?
+- [ ] Can you name one task where the cloud is clearly the better choice?
+
+# Further reading
+
+The following sources were used to verify the fast-changing technical details in this guide:
+
+- NVIDIA, [Nemotron 3.5 Lightning](https://developer.nvidia.com/blog/nvidia-nemotron-3-5-lightning-delivers-fast-accurate-specialized-task-execution-for-long-running-agents/)
+- NVIDIA, [Nemotron 3.5 Lightning model card](https://build.nvidia.com/nvidia/nemotron-3.5-lightning-30b-a3b/modelcard)
+- Meta, [Introducing Muse Glimmer](https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model)
+- Meta, [Muse Glimmer model page](https://developer.meta.com/ai/models/muse-glimmer/)
+- Qwen, [Qwen3.6-27B](https://huggingface.co/Qwen/Qwen3.6-27B)
+- Qwen, [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B)
+- Google, [Gemma 4 model overview](https://ai.google.dev/gemma/docs/core)
+- Google, [Gemma 4 model card](https://ai.google.dev/gemma/docs/core/model_card_4)
+- Google, [Thinking mode in Gemma](https://ai.google.dev/gemma/docs/capabilities/thinking)
+- LM Studio, [Use MCP servers](https://lmstudio.ai/docs/app/mcp)
+- Tavily, [Tavily MCP Server](https://docs.tavily.com/documentation/mcp)
+- Reddit, [QWEN 2.8 27B's Secret Sauce is Insecurity](https://www.reddit.com/r/Qwen_AI/comments/1vpmkp8/qwen_28_27bs_secret_sauce_is_insecurity/)
