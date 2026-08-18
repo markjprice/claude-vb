@@ -1,6 +1,6 @@
 > **A free bonus online-only guide to the *ChatGPT Visual Bible*, not included in the print edition**
 
-![Local AI with gpt-oss](gpt-oss-Hero.png)
+![Local AI with gpt-oss](Hero.png)
 
 *Technical details in this guide were last verified against primary sources in August 2026. Local AI tools change quickly. Confirm current requirements before relying on any of them.*
 
