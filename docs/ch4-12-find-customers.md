@@ -1,4 +1,4 @@
-# Chapter 4.14 Find Customers and Deliver Responsibly
+# Chapter 4.12 Find Customers and Deliver Responsibly
 
 This chapter takes your offer to real customers and shows you how to deliver on your promise in a way that protects both them and you.
 
